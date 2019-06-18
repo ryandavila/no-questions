@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quest-shun?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="all.css">
+</head>
+
+<body>
+  <header>
+    <h1>Shunning time - What dumb things have we uttered?</h1>
+  </header>
+  <main>
+    <form class="question-form">
+      <label for="question">Question:</label>
+      <input class="u-full-width" type="text" id="question" name="question">
+      <label for="author">Author:</label>
+      <input class="u-full-width" type="text" id="author" name="author"></input>
+      <label for="sober">Sober?</label>
+      <input type="radio" name="sober" value="Yep">Yep.
+      <input type="radio" name="sober" value="Nope">Nope. <br>
+      <button class="button-primary">Submit your disappointment</button>
+    </form>
+    <div class="loading">
+      <img src="loading.gif" alt="">
+    </div>
+    <div class="questions">
+
+    </div>
+  </main>
+  <script src="client.js"></script>
+</body>
+</html>

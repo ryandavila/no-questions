@@ -1,0 +1,13 @@
+# React files
+client/node_modules
+client/build
+
+# Express files
+server/node_modules
+server/now.json
+
+# OS X Files #
+.DS_Store
+._*
+.Spotlight*
+.Trashes
