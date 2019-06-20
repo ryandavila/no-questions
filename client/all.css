@@ -1,9 +1,21 @@
-.question-form {
+.form-group {
     width: 50%;
-    margin: 0 auto;
+    margin: 1em auto;
   }
 
-  .questions {
-    width: 80%;
-    margin: 0 auto;
-  }
+.questions {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.question {
+  width: 75%;
+  margin: 1em auto;
+  padding: 1em;
+  border-radius: .25em;
+}
+
+header {
+  width: 50%;
+  margin: 1em auto;
+}

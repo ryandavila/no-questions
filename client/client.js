@@ -1,6 +1,7 @@
 console.log("Howdy world.");
 
-const API_URL = 'http://localhost:5000/questions';
+const API_URL = 'https://no-questions.herokuapp.com/questions';
+// const API_URL = 'http://localhost:5000/questions';
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
 const questionsElement = document.querySelector('.questions');
@@ -48,6 +49,7 @@ function listAllQuestions() {
       console.log(questions);
       questions.forEach(question => {
         let div = document.createElement('div');
+        div.className = 'question';
         
         let header = document.createElement('h3');
         header.textContent = question.question;
@@ -57,9 +59,9 @@ function listAllQuestions() {
 
         let date = document.createElement('small');
         date.textContent = new Date(question.created);
-
         //idea for a card, with the color representing the 
         //sober answer
+        div.style.backgroundColor = question.sober.includes('Nope') ? 'red' : 'green';
 
         div.appendChild(header);
         div.appendChild(author);

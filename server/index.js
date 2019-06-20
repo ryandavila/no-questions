@@ -6,6 +6,8 @@ const moment = require('moment');
 moment().format();
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 const db = monk(process.env.MONGODB_URI || 'localhost:27017/questions');
 db.then(() => {
@@ -13,8 +15,7 @@ db.then(() => {
 });
 const questions = db.get('questions');
 
-app.use(cors());
-app.use(express.json());
+app.use(express.static('../client'));
 
 app.get('/', (req, res) => {
   res.json({
@@ -40,7 +41,7 @@ app.post('/questions', (req, res) => {
     const question = {
       question: req.body.question.toString(),
       author: req.body.author.toString(),
-      sober: req.body.sober.toString() + '.',
+      sober: req.body.sober.toString(),
       created: new Date()
     };
 
@@ -61,8 +62,8 @@ app.post('/questions', (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log('Listening on ya boi port 5000...');
+app.listen(process.env.PORT || 5000, () => {
+  console.log('Listening...');
 });
 
 function isValidQuestion(question) {

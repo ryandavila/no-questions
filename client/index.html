@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Quest-shun?</title>
+  <title>Questioner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="all.css">
 </head>
 
 <body>
   <header>
-    <h1>Shunning time - What dumb things have we uttered?</h1>
+    <h2>What dumb things can we ask again?</h2>
   </header>
   <main>
-    <form class="question-form">
+    <form class="form-group">
       <label for="question">Question:</label>
-      <input class="u-full-width" type="text" id="question" name="question">
+      <input class="form-control" type="text" id="question" name="question">
       <label for="author">Author:</label>
-      <input class="u-full-width" type="text" id="author" name="author"></input>
-      <label for="sober">Sober?</label>
-      <input type="radio" name="sober" value="Yep">Yep.
-      <input type="radio" name="sober" value="Nope">Nope. <br>
-      <button class="button-primary">Submit your disappointment</button>
+      <input class="form-control" type="text" id="author" name="author"></input>
+      <div class="input-group m-2">
+        <label for="sober" class="m-1">Sober?</label>
+        <input type="radio" name="sober" value="Yep" class="m-1">Yep.
+        <input type="radio" name="sober" value="Nope" class="m-1">Nope. <br>
+      </div>
+      <button class="btn btn-primary">Submit your disappointment!</button>
     </form>
     <div class="loading">
       <img src="loading.gif" alt="">
