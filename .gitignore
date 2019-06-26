@@ -11,3 +11,5 @@ server/now.json
 ._*
 .Spotlight*
 .Trashes
+
+package-lock.json

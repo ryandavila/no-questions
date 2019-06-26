@@ -1,5 +1,5 @@
 {
-  "name": "questioner",
+  "name": "no-questions",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "cd server && npm install && cd ../client && npm install"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ryan Davila",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "3.5.1"
