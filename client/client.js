@@ -1,7 +1,4 @@
-console.log("Howdy world.");
-
-const API_URL = 'https://no-questions.herokuapp.com/questions';
-// const API_URL = 'http://localhost:5000/questions';
+const QUESTIONS_URL = `${window.location.origin}/questions`;
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
 const questionsElement = document.querySelector('.questions');
@@ -26,7 +23,7 @@ form.addEventListener('submit', (event) => {
   form.style.display = 'none';
   loadingElement.style.display = '';
   
-  fetch(API_URL, {
+  fetch(QUESTIONS_URL, {
     method: 'POST',
     body: JSON.stringify(questionEntry),
     headers: {
@@ -42,11 +39,11 @@ form.addEventListener('submit', (event) => {
 
 function listAllQuestions() {
   questionsElement.innerHTML = '';
-  fetch(API_URL)
+  fetch(QUESTIONS_URL)
     .then(response => response.json())
     .then(questions => {
       questions.reverse();
-      console.log(questions);
+      // console.log(questions);
       questions.forEach(question => {
         let div = document.createElement('div');
         div.className = 'question';

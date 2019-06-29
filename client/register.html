@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>No Questions?</title>
+  <title>No Questions - Make Account</title>
   <link rel="icon" type="image/png" href="./assets/question_mark.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,41 +21,74 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="/register.html">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/login.html">Login</a>
-          </li>
+            <a class="nav-link" href="/login.html">Login</a>
+        </li>
       </ul>
     </div>
   </nav>
   <header>
-    <h2>What dumb things can we ask again?</h2>
+    <h2>Contribute to the collection!</h2>
   </header>
   <main>
-    <form class="form-group">
-      <label for="question">Question:</label>
-      <input class="form-control" type="text" id="question" name="question">
-      <label for="author">Author:</label>
-      <input class="form-control" type="text" id="author" name="author"></input>
-      <div class="input-group m-2">
-        <label for="sober" class="m-1">Sober?</label>
-        <input type="radio" name="sober" value="Yep" class="m-1">Yep.
-        <input type="radio" name="sober" value="Nope" class="m-1">Nope. <br>
-      </div>
-      <button class="btn btn-primary">Submit your disappointment!</button>
-    </form>
-    <div class="loading">
-      <img src="./assets/eclipse_loading.svg" alt="Loading...">
-    </div>
-    <div class="questions">
+    <div class="error alert alert-danger container" style="display: none">
 
     </div>
+    <div class="loading">
+      <img src="./assets/eclipse_loading.svg" alt="Loading icon...">
+    </div>
+    <form class="form-group">
+      <label for="username">Username</label>
+      <input 
+        class="form-control"
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter a username"
+        aria-describedby="usernameHelp"
+        required>
+      <h6 id="usernameHelp" class="form-text text-muted">
+        Username must be longer than 2 characters and less than 30. 
+        Alphanumeric, underscores and hyphens only. 
+      </h6>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="password">Password</label>
+          <input
+            class="form-control"
+            type="password"  
+            id="password"
+            name="password"
+            aria-describedby="passwordHelp"
+            required>
+          <h6 id="passwordHelp" class="form-text text-muted">
+              Password must be greater than 8 characters.
+          </h6>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="password">Confirm Password</label>
+          <input
+            class="form-control"
+            type="password"  
+            id="confirmPassword"
+            name="confirmPassword"
+            aria-describedby="confirmHelp">
+          <h6 id="confirmHelp" class="form-text text-muted">
+              Must match password.
+          </h6>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">Register</button>
+    </form>
   </main>
-  <script src="client.js"></script>
+  <script src="register_bundle.js"></script>
 </body>
 </html>

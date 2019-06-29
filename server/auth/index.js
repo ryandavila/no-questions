@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   console.log('body', req.body);
   const result = Joi.validate(req.body, schema);
   if (result.error === null) {
@@ -29,6 +29,7 @@ router.post('/signup', (req, res, next) => {
       username: req.body.username,
     }).then(user => {
       if (user) {
+        res.status(409);
         //already user in the DB with this username, res = error
         const error = new Error('That username already exists! Please select another...');
         next(error);
@@ -47,7 +48,55 @@ router.post('/signup', (req, res, next) => {
       }
     });
   } else {
+    res.status(422);
     next(result.error);
+  }
+});
+
+function respondError422(res, next) {
+  res.status(422);
+  const error = new Error('Unable to login');
+  next(error);
+}
+
+router.post('/login', (req, res, next) => {
+  const result = Joi.validate(req.body, schema);
+  if (result.error === null) {
+    users.findOne({
+      username: req.body.username
+    }).then(user => {
+      if (user) {
+        //found user, need to compare password
+        bcrypt
+          .compare(req.body.password, user.password)
+          .then((result) => {
+            if (result) {
+              //correct password!
+              const payload = {
+                _id: user._id,
+                username: user.username
+              };
+              jwt.sign(payload, process.env.TOKEN_SECRET, {
+                expiresIn: '2d'
+              }, (err, token) => {
+                if (err) {
+                  respondError422(res, next)
+                } else {
+                  res.json({
+                    token
+                  });
+                }
+              });
+            } else {
+              respondError422(res, next);
+            }
+        });
+      } else {
+        respondError422(res, next);
+      }
+    });
+  } else {
+    respondError422(res, next);
   }
 });
 

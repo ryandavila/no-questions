@@ -3,6 +3,8 @@ const cors = require('cors');
 const monk = require('monk');
 const rateLimit = require('express-rate-limit');
 
+require('dotenv').config();
+
 const app = express();
 app.use(cors());
 app.use(express.json());

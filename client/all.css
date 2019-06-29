@@ -19,3 +19,14 @@ header {
   width: 50%;
   margin: 1em auto;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.alert {
+  display: flex;
+  justify-content: center;
+  width: inherit;
+}

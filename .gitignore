@@ -13,3 +13,4 @@ server/now.json
 .Trashes
 
 package-lock.json
+client/*bundle.js

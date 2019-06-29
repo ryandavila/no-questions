@@ -10,6 +10,7 @@
   "author": "Ryan Davila",
   "license": "ISC",
   "dependencies": {
+    "joi": "^14.3.1",
     "lite-server": "^2.5.3"
   }
 }
