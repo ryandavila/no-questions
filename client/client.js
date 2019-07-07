@@ -1,11 +1,33 @@
 const QUESTIONS_URL = `${window.location.origin}/questions`;
+const USER_URL = `${window.location.origin}/api/user`;
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
 const questionsElement = document.querySelector('.questions');
+const usernameElement = document.querySelector('.username');
 
 loadingElement.style.display = '';
 
 listAllQuestions();
+
+fetch(USER_URL, {
+  headers: {
+    authorization: `Bearer ${localStorage.token}`,
+  },
+  }).then(res => res.json())
+    .then((result) => {
+      if (result.user) {
+        const user = result.user;
+        console.log(user);
+        usernameElement.innerHTML = `Hello ${user.username}!`;
+        document.getElementById('register').style.display = 'none';
+        document.getElementById('login').style.display = 'none';
+      } else {
+        localStorage.removeItem('token');
+        // can add logic to redirect here
+      }
+});
+
+loadingElement.style.display = 'none';
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -22,7 +44,7 @@ form.addEventListener('submit', (event) => {
     
   form.style.display = 'none';
   loadingElement.style.display = '';
-  
+
   fetch(QUESTIONS_URL, {
     method: 'POST',
     body: JSON.stringify(questionEntry),
@@ -68,4 +90,9 @@ function listAllQuestions() {
       });
       loadingElement.style.display = 'none';
     });
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  window.location = '/login.html'
 }

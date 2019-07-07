@@ -13,6 +13,10 @@ const schema = Joi.object().keys({
 
 loadingElement.style.display = 'none';
 
+if (localStorage.token) {
+  window.location = '/index.html'
+}
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const formData = new FormData(form);
@@ -51,9 +55,12 @@ function register(user) {
         return response.json().then(error => {
           throw new Error(error.message);
         });
-      }).then(() => {
-        // transition to login page
-        window.location= "/login.html";
+      }).then((result) => {
+        setTimeout(() => {
+          localStorage.token = result.token;
+          // transition to main page
+          window.location = "/index.html";
+        }, 1000);
       }).catch(error => {
         errorElement.innerHTML = error;
         errorElement.style.display = '';

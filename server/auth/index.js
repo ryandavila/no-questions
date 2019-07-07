@@ -13,6 +13,24 @@ const schema = Joi.object().keys({
   password: Joi.string().trim().min(8).required()
 });
 
+function createTokenSendResponse(user, res, next) {
+  const payload = {
+    _id: user._id,
+    username: user.username
+  };
+  jwt.sign(payload, process.env.TOKEN_SECRET, {
+    expiresIn: '1d'
+  }, (err, token) => {
+    if (err) {
+      respondError422(res, next)
+    } else {
+      res.json({
+        token
+      });
+    }
+  });
+}
+
 router.get('/', (req, res) => {
   res.json({
     message: 'auth pathway returned'
@@ -20,7 +38,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/register', (req, res, next) => {
-  console.log('body', req.body);
   const result = Joi.validate(req.body, schema);
   if (result.error === null) {
     // username unique?
@@ -41,8 +58,7 @@ router.post('/register', (req, res, next) => {
           };
 
           users.insert(newUser).then(insertedUser => {
-            delete insertedUser.password;
-            res.json(insertedUser);
+            createTokenSendResponse(insertedUser, res, next);
           });
         });
       }
@@ -72,21 +88,7 @@ router.post('/login', (req, res, next) => {
           .then((result) => {
             if (result) {
               //correct password!
-              const payload = {
-                _id: user._id,
-                username: user.username
-              };
-              jwt.sign(payload, process.env.TOKEN_SECRET, {
-                expiresIn: '2d'
-              }, (err, token) => {
-                if (err) {
-                  respondError422(res, next)
-                } else {
-                  res.json({
-                    token
-                  });
-                }
-              });
+              createTokenSendResponse(user, res, next)
             } else {
               respondError422(res, next);
             }

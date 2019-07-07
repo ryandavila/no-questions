@@ -9,6 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const middlewares = require('./auth/middlewares');
+app.use(middlewares.checkTokenSetUser);
+
 const auth = require('./auth');
 app.use('/auth', auth);
 
@@ -21,9 +24,9 @@ const questions = db.get('questions');
 
 app.use(express.static('../client'));
 
-app.get('/', (req, res) => {
+app.get('/api/user', (req, res) => {
   res.json({
-    message: 'Question received homie'
+    user: req.user,
   });
 });
 
