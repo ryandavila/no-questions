@@ -69,8 +69,9 @@ app.post('/questions', (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log('Listening...');
+const port = process.env.PORT || 5000
+app.listen(port, () => {
+  console.log('Listening on port', port);
 });
 
 function notFound(req, res, next) {
